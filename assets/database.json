@@ -1,0 +1,92 @@
+{
+    "Profesores": [
+        "Medina",
+        "Olivia",
+        "Claudia"
+    ],
+    "Alumnos": [
+        {
+            "nombre": "Juan",
+            "edad": 15,
+            "materias": [
+                "Fisica",
+                "Matematicas"
+            ],
+            "Asesorias": [
+                {
+                    "materia": "Fisica",
+                    "Profesor": "Olivia"
+                },
+                {
+                    "materia": "Matematicas",
+                    "Profesor": "Medina"
+                }
+            ],
+            "historial":[
+                {
+                    "materia": "Fisica",
+                    "calificacion": 10
+                },
+                {
+                    "materia": "Matematicas",
+                    "calificacion": 9
+                }
+            ],
+            "control": "12345678901234",
+            "password": "12345678"
+        },
+        {
+            "nombre": "Pedro",
+            "edad": 16,
+            "materias": [
+                "Fisica",
+                "Matematicas",
+                "Quimica"
+            ],
+            "Asesorias": [
+                {
+                    "materia": "Fisica",
+                    "Profesor": "Olivia"
+                },
+                {
+                    "materia": "Matematicas",
+                    "Profesor": "Medina"
+                },
+                {
+                    "materia": "Quimica",
+                    "Profesor": "Claudia"
+                }
+            ],
+            "historial":[
+                {
+                    "materia": "Fisica",
+                    "calificacion": 10
+                },
+                {
+                    "materia": "Matematicas",
+                    "calificacion": 9
+                },
+                {
+                    "materia": "Quimica",
+                    "calificacion": 8
+                }
+            ],
+            "control": "12345678901235",
+            "password": "12345678"
+        }
+    ],
+    "Asesorias": [
+            {
+                "materia": "Fisica",
+                "Profesor": "Olivia"
+            },
+            {
+                "materia": "Matematicas",
+                "Profesor": "Medina"
+            },
+            {
+                "materia": "Quimica",
+                "Profesor": "Claudia"
+            }
+        ]
+    }
