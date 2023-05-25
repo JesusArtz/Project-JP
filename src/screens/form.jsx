@@ -5,20 +5,47 @@ import NavBar from "../components/navbar";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "../components/provider";
 
-export default function Formulario({ data }){
-
+export default function Formulario({route, session }){
+    
+    const { id } = route.params;
     const { values } = useForm();
     const navigation = useNavigation();
     const send = () => {
         const promedio = Object.values(values).reduce((a, b) => a + b) / 6;
-        console.log('Promedio: ',promedio)
-        navigation.navigate("Home")
-    }
+        console.log(promedio);
+        fetch("http://192.168.0.17:5000/send_calificacion", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "token": session.token,
+            },
+            body: JSON.stringify({
+                id_asesoria: id,
+                calificacion: promedio,
+                token: session.token,
+            }),
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            alert(json.message);
+            navigation.navigate("Home");
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        }
+        );
 
+
+    }
+    
     useEffect(() => {
         console.log(values)
     }, [values])
 
+    console.log(id)
+    console.log(route)
 
 
     return (

@@ -3,11 +3,43 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CalificacionButton from "../components/calificacionButton";
 import NavBar from "../components/navbar";
-import db from "../../assets/database.json";
 
 export default function Home({ session }) {
 
     const navigation = useNavigation();
+    const [asesorias, setAsesorias] = React.useState({
+        "0": {
+            materia: "Matematicas",
+            profesor: "Medina",
+        },
+        "1": {
+            materia: "Español",
+            profesor: "Medina",
+        },
+    });
+
+    React.useEffect(() => {
+        console.log(typeof session.token)
+        fetch("http://192.168.0.17:5000/get_asesorias", { 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "token": session.token,
+                },
+                body: JSON.stringify({
+                    token: session.token,
+                    
+                    }),
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    setAsesorias(json);
+                    console.log(json);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+    }, []);
 
 
 
@@ -21,8 +53,9 @@ export default function Home({ session }) {
 
                 <View style={styles.container}>
                     <Text style={styles.textLog}>Asesorias</Text>
-                    <CalificacionButton data={{materia: "Matematicas", Profesor: "Juan Perez"}}/>
-                    <CalificacionButton data={{materia: "Fisica", Profesor: "Juan Perez"}}/>
+                    {Object.keys(asesorias).map((key, index) => (
+                        <CalificacionButton data={asesorias[key]} key={index} />
+                    ))}
                     
                     
                 </View>

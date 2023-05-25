@@ -30,8 +30,6 @@ export default function App() {
             {props => <Home {...props} session={session} />}
           </Stack.Screen>
 
-          
-
           <Stack.Screen name="Formulario">
             {props => <Formulario {...props} session={session} />}
           </Stack.Screen>

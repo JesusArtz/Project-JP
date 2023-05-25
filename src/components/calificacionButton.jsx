@@ -8,14 +8,14 @@ export default function CalificacionButton({ data }){
     // The card should be clickable and should navigate to the calificacion screen
 
     const navigation = useNavigation();
-
+    console.log(data);
     return (
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("Formulario")}>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("Formulario", {"id":data.id})}>
             <View style={{flexDirection: "row", alignItems:'flex-start', paddingLeft:10}}>
                 <Image source={require("../../assets/icon.png")} style={styles.image}/>
             <View style={{flexDirection: "column"}}>
                 <Text style={styles.text}>{data.materia}</Text>
-                <Text style={styles.textProf}>{data.Profesor}</Text>
+                <Text style={styles.textProf}>{data.profesor}</Text>
             </View>
             </View>
             

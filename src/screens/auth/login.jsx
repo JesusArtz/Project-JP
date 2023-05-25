@@ -53,9 +53,34 @@ export default function Login({ callback, session }) {
                     initialValues={{ control: '', password: '' }}
                     validationSchema={loginValidationSchema}
                     onSubmit={values => {
-                            navigation.navigate("Home")
-                        }
-                        
+                        fetch("http://192.168.0.17:5000/login", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                control: values.control,
+                                password: values.password,
+                            }),
+                        })
+                            .then((response) => response.json())
+                            .then((json) => {
+                                if (json.token != null) {
+                                    callback(json);
+                                    navigation.navigate('Home');
+                                } else {
+                                    // set alert title and message
+                                    alert("Numero de control o contraseña incorrectos");
+                                    
+                                }
+                            }
+                            )
+                            .catch((error) => {
+                                console.error(error);
+                            }
+                            );
+                    }
+
                     }>
 
                     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
